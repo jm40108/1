@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>django로 만드는 홈페이지 {% block title %} {% endblock %}</title>
+</head>
+<body>
+<h2>나만의 홈페이지</h2>
+<a href="{% url 'vote:index' %}">설문조사</a>
+<a href="/">북마크</a>
+<a href="{% url 'blog:index' %}">블로그</a>
+<br>
+{% if user.is_authenticated %}
+{{ user.last_name}} {{user.first_name}}님 환영합니다!
+<a href="{% url 'login:signout' %}">로그아웃</a>
+{% else %}
+<a href="{% url 'login:signin' %}">로그인</a>
+<a href="{% url 'login:signup' %}">회원가입</a>
+{% endif %}
+<hr>
+{% block content %}
+{% endblock %}
+<hr>
+<p>서울시 죵로구</p>
+<p>123-456-7890</p>
+</body>
+</html>

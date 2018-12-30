@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+{% block content %}
+<h1>{{q.name}}</h1>
+<p>{{q.date}}</p>
+<form action="{% url 'vote:vote' %}" method="post">
+{% csrf_token %}
+{% for c in q.choice_set.all %}
+<input type=radio name=a value="{{c.id}}">
+<label>{{c.name}} </label>
+<a href="{% url 'vote:cupdate' c.id %}">수정</a>
+<a href="{% url 'vote:cdelete' c.id %}">삭제</a><br>
+{% endfor %}
+<input type="submit" value=투표하기>
+</form>
+<a href="{% url 'vote:qupdate' q.id %}">수정</a>
+<a href="{% url 'vote:qdelete' q.id %}">삭제</a><br>
+<a href="{% url 'vote:index' %}">돌아가기</a>
+
+{% endblock %}

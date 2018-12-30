@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+{% block content %}
+	<h1>설문조사 등록</h1>
+	<form action="" method="POST">
+		{% csrf_token %} {{ f.as_p }} <input type=submit value="질문 등록">
+	</form>
+
+{% endblock %}
